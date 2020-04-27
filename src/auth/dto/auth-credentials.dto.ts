@@ -5,6 +5,7 @@ import {
   MaxLength,
   MinLength,
 } from 'class-validator';
+import { Column } from 'typeorm';
 
 export class AuthCredentialsDto {
   @IsNotEmpty()
