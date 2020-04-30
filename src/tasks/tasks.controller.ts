@@ -30,7 +30,7 @@ export class TasksController {
   @Get()
   async getTasks(
     @Query(ValidationPipe) filterDto: GetTasksFilterDto,
-    @GetUser() user: User
+    @GetUser() user: User,
   ): Promise<Task[]> {
     return this.tasksService.getTasks(filterDto, user);
   }
@@ -38,7 +38,7 @@ export class TasksController {
   @Get(':id')
   getTaskById(
     @Param('id', ParseIntPipe) id: number,
-    @GetUser() user: User
+    @GetUser() user: User,
   ): Promise<Task> {
     return this.tasksService.getTaskById(id, user);
   }
@@ -55,7 +55,7 @@ export class TasksController {
   @Delete(':id')
   deleteTask(
     @Param('id', ParseIntPipe) id: number,
-    @GetUser() user: User
+    @GetUser() user: User,
   ): Promise<void> {
     return this.tasksService.deleteTask(id, user);
   }
@@ -64,7 +64,7 @@ export class TasksController {
   updateTaskStatus(
     @Param('id', ParseIntPipe) id: number,
     @Body('status', TaskStatusValidationPipe) status: TaskStatus,
-    @GetUser() user: User
+    @GetUser() user: User,
   ): Promise<Task> {
     return this.tasksService.updateTaskStatus(id, status, user);
   }

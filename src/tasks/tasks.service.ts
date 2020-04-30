@@ -10,7 +10,7 @@ import { User } from '../auth/user.entity';
 @Injectable()
 export class TasksService {
   constructor(
-    @InjectRepository(TaskRepository) private taskRepository: TaskRepository,
+    @InjectRepository(TaskRepository) private taskRepository: TaskRepository
   ) {}
 
   async getTasks(filterDto: GetTasksFilterDto, user: User): Promise<Task[]> {
@@ -18,7 +18,9 @@ export class TasksService {
   }
 
   async getTaskById(id: number, user: User): Promise<Task> {
-    const found = await this.taskRepository.findOne({ where: { id, userId: user.id }});
+    const found = await this.taskRepository.findOne({
+      where: { id, userId: user.id },
+    });
     if (!found) {
       throw new NotFoundException(`Task with Id='${id}' not found.`);
     }
@@ -36,7 +38,11 @@ export class TasksService {
     }
   }
 
-  async updateTaskStatus(id: number, status: TaskStatus, user: User): Promise<Task> {
+  async updateTaskStatus(
+    id: number,
+    status: TaskStatus,
+    user: User,
+  ): Promise<Task> {
     const task = await this.getTaskById(id, user);
     task.status = status;
     return await task.save();
