@@ -1,0 +1,6 @@
+db:
+  host: 'localhost'
+  synchronize: true
+
+jwt:
+  secret: 'yq9X4ETrpKLuRAoYh7'
